@@ -1,18 +1,27 @@
-<h1>Players</h1>
+<div class="players-page">
+  <h1>Players</h1>
 
-<h3>Add Player</h3>
-<%= form_with model: Player.new, url: players_path do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit "Add" %>
-<% end %>
+  <section class="players-form-section">
+    <h2>Add Player</h2>
 
-<ul>
-  <% @players.each do |player| %>
-    <li>
-      <%= player.name %>
-      (Wins: <%= player.wins_count %>, Losses: <%= player.losses_count %>)
+    <%= form_with model: Player.new, url: players_path, html: { class: "player-form" } do |f| %>
+      <%= f.text_field :name, placeholder: "Enter player name" %>
+      <%= f.submit "Add" %>
+    <% end %>
+  </section>
 
-      <%= button_to "Delete", player_path(player), method: :delete %>
-    </li>
-  <% end %>
-</ul>
+  <section class="players-list-section">
+    <ul class="players-list">
+      <% @players.each do |player| %>
+        <li class="player-row">
+          <span class="player-details">
+            <%= player.name %>
+            (Wins: <%= player.wins_count %>, Losses: <%= player.losses_count %>)
+          </span>
+
+          <%= button_to "Delete", player_path(player), method: :delete, class: "player-delete-button" %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</div>

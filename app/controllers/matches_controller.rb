@@ -10,9 +10,9 @@ class MatchesController < ApplicationController
     )
 
     if match.save
-      redirect_to leaderboard_path
+      redirect_to leaderboard_path, notice: "Match created successfully"
     else
-      render plain: match.errors.full_messages.join(", ")
+       redirect_to new_match_path, alert: match.errors.full_messages.join(", ")
     end
   end
 end

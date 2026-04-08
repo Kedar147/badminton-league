@@ -1,43 +1,9 @@
-<h1>Record Match</h1>
-
 <%= form_with url: matches_path do %>
-  <p>
-    Winner:
-    <%= select_tag :winner_id,
-          options_from_collection_for_select(@players, :id, :name, @players.first&.id),
-          id: "winner_select" %>
-  </p>
-
-  <p>
-    Loser:
-    <%= select_tag :loser_id,
-          options_from_collection_for_select(@players, :id, :name, @players.second&.id),
-          id: "loser_select" %>
-  </p>
-
+ <p>
+  Winner:<%= select_tag :winner_id,options_from_collection_for_select(@players, :id, :name),id: "winner_select" %>
+</p>
+<p>
+    Loser: <%= select_tag :loser_id,options_from_collection_for_select(@players, :id, :name),id: "loser_select",disabled: true %>
+</p>
   <%= submit_tag "Create Match" %>
 <% end %>
-
-<script>
-  const winnerSelect = document.getElementById("winner_select");
-  const loserSelect = document.getElementById("loser_select");
-
-  function updateOptions() {
-    const winnerValue = winnerSelect.value;
-    const loserValue = loserSelect.value;
-
-    Array.from(winnerSelect.options).forEach(option => {
-      option.disabled = (option.value === loserValue);
-    });
-
-    Array.from(loserSelect.options).forEach(option => {
-      option.disabled = (option.value === winnerValue);
-    });
-  }
-
-  winnerSelect.addEventListener("change", updateOptions);
-  loserSelect.addEventListener("change", updateOptions);
-
-  // Initial call (important when page loads)
-  updateOptions();
-</script>
