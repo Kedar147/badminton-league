@@ -11,6 +11,20 @@
   </head>
 
   <body>
+  <% if notice %>
+    <p style="color: green;"><%= notice %></p>
+  <% end %>
+
+  <% if alert %>
+    <p style="color: red;"><%= alert %></p>
+  <% end %>
+    <nav>
+      <%= link_to "Players", players_path %> |
+      <%= link_to "Leaderboard", leaderboard_path %> |
+      <%= link_to "New Match", new_match_path %>
+    </nav>
+    <hr>
+
     <%= yield %>
   </body>
 </html>

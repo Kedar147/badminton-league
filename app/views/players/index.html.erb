@@ -1,0 +1,18 @@
+<h1>Players</h1>
+
+<h3>Add Player</h3>
+<%= form_with model: Player.new, url: players_path do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit "Add" %>
+<% end %>
+
+<ul>
+  <% @players.each do |player| %>
+    <li>
+      <%= player.name %>
+      (Wins: <%= player.wins_count %>, Losses: <%= player.losses_count %>)
+
+      <%= button_to "Delete", player_path(player), method: :delete %>
+    </li>
+  <% end %>
+</ul>
